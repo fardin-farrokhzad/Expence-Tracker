@@ -1,68 +1,51 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Primary */
+  --primary-light: #2b80ed;
+  --primary-dark: #0b8ba3;
+  --primary-brand: #f9d3b8;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Neutrals */
+  --neutral-dark-1: #1f2933;
+  --neutral-dark-2: #323f4b;
+  --neutral-grey-1: #66798d;
+  --neutral-grey-2: #9fabbf;
+  --neutral-grey-3: #b0b8c1;
+  --neutral-soft-grey-1: #d0cfe3;
+  --neutral-soft-grey-2: #ebedf0;
+  --neutral-soft-grey-3: #fafafb;
+  --neutral-white: #ffffff;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* System */
+  --system-red: #ef4e4e;
+  --system-yellow: #fbbb4a;
+  --system-green: #3ebdd3;
+  --system-blue: #3ebdd3;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('./assets/fonts/Vazirmatn-VariableFont_wght.ttf') format('truetype');
+  font-display: swap;
 }
-a:hover {
-  color: #535bf2;
-}
-
-body {
+*,
+*::before,
+*::after {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  text-decoration: none;
 }
-
+li {
+  list-style: none;
+}
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  font-family: 'Vazirmatn';
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+body {
+  font-family: 'Vazirmatn';
+  height: auto;
+  min-height: 120vh;
+  width: 100%;
+  background-color: var(--neutral-soft-grey-2);
 }
