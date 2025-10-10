@@ -5,7 +5,7 @@
   border-radius: 16px;
   background-color: var(--neutral-white);
   min-height: 803px;
-  max-width: 756px;
+  width: 756px;
   direction: rtl;
   margin: 1rem;
   color: var(--neutral-dark-1);
@@ -13,7 +13,6 @@
 
 .transactions__title {
   text-align: center;
-  font-size: 1.3rem;
   font-weight: bold;
   padding: 36px 24px;
   padding-top: 0;
@@ -62,15 +61,18 @@
   display: grid;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 790px) {
   .transactions {
     padding: 1rem;
+    max-width: 380px;
   }
 
   .desktopOnly {
     display: none;
   }
-
+  .transactions__title {
+    padding: 20px 8px;
+  }
   .transaction {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -120,8 +122,8 @@
 
   .transaction__item > .income.hasValue::after,
   .transaction__item > .expense.hasValue::after {
-    content: ' تومان';
-    font-weight: normal;
+    content: 'تومان';
+    font-weight: bold;
     color: inherit;
     margin-right: 4px;
   }
