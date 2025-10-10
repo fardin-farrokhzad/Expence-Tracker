@@ -1,9 +1,21 @@
 // TransactionTable.jsx
 import styles from './TransactionTable.module.css';
 
-/*
-    Transaction Table Component
- */
+// Converting numbers to persian
+function numberToPersian(number) {
+  const persian = { 0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹' };
+  number = number.toString().split('');
+  let persianNumber = '';
+  for (let i = 0; i < number.length; i++) {
+    number[i] = persian[number[i]];
+  }
+  for (let i = 0; i < number.length; i++) {
+    persianNumber += number[i];
+  }
+  return persianNumber;
+}
+
+// Transaction Table Component
 const TransactionTable = ({ data }) => {
   return (
     <section className={styles.transactions}>
@@ -29,14 +41,14 @@ const TransactionTable = ({ data }) => {
             {/* Income */}
             <div className={styles.transaction__item}>
               <span className={`${styles.income} ${item.income ? styles.hasValue : ''}`}>
-                {item.income > 0 ? `${item.income.toLocaleString()}+` : ''}
+                {item.income > 0 ? `${numberToPersian(item.income)}+` : ''}
               </span>
             </div>
 
             {/* Expense */}
             <div className={styles.transaction__item}>
               <span className={`${styles.expense} ${item.expense ? styles.hasValue : ''}`}>
-                {item.expense > 0 ? `${item.expense.toLocaleString()}-` : ''}
+                {item.expense > 0 ? `${numberToPersian(item.expense)}-` : ''}
               </span>
             </div>
 
