@@ -1,0 +1,130 @@
+/* TransactionTable.module.css */
+.transactions {
+  align-items: center;
+  padding: 36px 24px;
+  border-radius: 16px;
+  background-color: var(--neutral-white);
+  min-height: 803px;
+  width: 756px;
+  direction: rtl;
+  margin: 1rem;
+  color: var(--neutral-dark-1);
+}
+
+.transactions__title {
+  text-align: center;
+  font-weight: bold;
+  padding: 36px 24px;
+  padding-top: 0;
+}
+
+.transactions__header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-weight: bold;
+  color: var(--neutral-grey-1);
+  border-bottom: 1px solid var(--system-blue);
+  padding-bottom: 0.75rem;
+}
+
+.transactions__list {
+  margin-top: 1rem;
+}
+
+.transaction {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 16px 8px;
+  transition: background 0.5s ease;
+  border-radius: 8px;
+}
+
+.transaction:hover {
+  background-color: var(--neutral-soft-grey-2);
+}
+
+.transaction__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.income.hasValue {
+  color: var(--system-green);
+}
+
+.expense.hasValue {
+  color: var(--system-red);
+}
+
+.desktopOnly {
+  display: grid;
+}
+
+@media (max-width: 790px) {
+  .transactions {
+    padding: 1rem;
+    max-width: 380px;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+  .transactions__title {
+    padding: 20px 8px;
+  }
+  .transaction {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'date price'
+      'description description';
+    gap: 8px;
+    padding: 14px 16px;
+    background-color: var(--neutral-soft-grey-3);
+    margin-bottom: 8px;
+  }
+
+  .transaction__item.date {
+    grid-area: date;
+    font-weight: bold;
+    justify-content: flex-start;
+  }
+
+  .transaction > .transaction__item:nth-child(2),
+  .transaction > .transaction__item:nth-child(3) {
+    grid-area: price;
+    justify-content: flex-end;
+    text-align: right;
+    font-weight: bold;
+  }
+
+  .transaction__item.description {
+    grid-area: description;
+    line-height: 1.4;
+    justify-content: flex-start;
+  }
+
+  /* Hide income div if no value */
+  .transaction > .transaction__item:nth-child(2):has(> span.income:not(.hasValue)) {
+    display: none;
+  }
+
+  /* Hide expense div if no value */
+  .transaction > .transaction__item:nth-child(3):has(> span.expense:not(.hasValue)) {
+    display: none;
+  }
+
+  /* If both have values, prioritize income by hiding expense */
+  .transaction > .transaction__item:nth-child(2):has(> span.income.hasValue) + .transaction__item:nth-child(3) {
+    display: none;
+  }
+
+  .transaction__item > .income.hasValue::after,
+  .transaction__item > .expense.hasValue::after {
+    content: 'تومان';
+    font-weight: bold;
+    color: inherit;
+    margin-right: 4px;
+  }
+}
