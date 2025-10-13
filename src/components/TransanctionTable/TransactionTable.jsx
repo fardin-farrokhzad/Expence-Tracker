@@ -22,8 +22,8 @@ const TransactionTable = ({ data }) => {
 
       {/* Transactions */}
       <div className={styles.transactions__list}>
-        {data.map((item, index) => (
-          <div className={styles.transaction} key={index}>
+        {data.map(item => (
+          <div className={styles.transaction} key={item.id}>
             {/* Date */}
             <div className={`${styles.transaction__item} ${styles.date}`}>
               <span>{item.date}</span>
