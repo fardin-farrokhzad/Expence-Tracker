@@ -10,7 +10,9 @@ function App() {
     fetch('http://localhost:8000/data')
       .then(res => res.json())
       .then(result => setData(result))
-      .catch(() => {});
+      .catch(erorr => {
+        console.error(`Fetching data failed (${erorr})`);
+      });
   }, []);
 
   return <TransactionTable data={data} />;
