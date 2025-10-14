@@ -1,7 +1,6 @@
-// TransactionTable.jsx
 import styles from './TransactionTable.module.css';
 
-// Converting numbers to persian
+// Converting numbers to Persian
 function numberToPersian(number) {
   return number.toString().replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
 }
@@ -26,24 +25,24 @@ const TransactionTable = ({ data }) => {
           <div className={styles.transaction} key={item.id}>
             {/* Date */}
             <div className={`${styles.transaction__item} ${styles.date}`}>
-              <span>{item.date}</span>
+              <span>{numberToPersian(item.date)}</span>
             </div>
 
             {/* Income */}
             <div className={styles.transaction__item}>
-              <span className={`${styles.income} ${item.income ? styles.hasValue : ''}`}>
-                {item.income > 0 ? `${numberToPersian(item.income)}+` : ''}
+              <span className={`${styles.income} ${item.type === 'income' && item.amount > 0 ? styles.hasValue : ''}`}>
+                {item.type === 'income' && item.amount > 0 ? `${numberToPersian(item.amount)}+` : ''}
               </span>
             </div>
 
             {/* Expense */}
             <div className={styles.transaction__item}>
-              <span className={`${styles.expense} ${item.expense ? styles.hasValue : ''}`}>
-                {item.expense > 0 ? `${numberToPersian(item.expense)}-` : ''}
+              <span className={`${styles.expense} ${item.type === 'expense' && item.amount > 0 ? styles.hasValue : ''}`}>
+                {item.type === 'expense' && item.amount > 0 ? `${numberToPersian(item.amount)}-` : ''}
               </span>
             </div>
 
-            {/* Description*/}
+            {/* Description */}
             <div className={`${styles.transaction__item} ${styles.description}`}>
               <span>{item.description}</span>
             </div>
