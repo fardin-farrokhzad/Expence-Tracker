@@ -1,26 +1,53 @@
-/* TransactionTable.module.css */
 .transactions {
+  justify-self: center;
+  align-self: center;
   align-items: center;
   padding: 36px 24px;
   border-radius: 16px;
   background-color: var(--neutral-white);
   min-height: 803px;
-  width: 756px;
+  width: 816px;
   direction: rtl;
   margin: 1rem;
   color: var(--neutral-dark-1);
+  position: relative;
 }
-
+.title__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 34px;
+}
 .transactions__title {
   text-align: center;
   font-weight: bold;
-  padding: 36px 24px;
   padding-top: 0;
+  padding-right: 0;
+  font-size: 20px;
 }
-
+.transaction__button {
+  padding: 4px 24px;
+  width: 199px;
+  height: 48px;
+  border-radius: 8px;
+  border: none;
+  font-size: 20px;
+  color: var(--neutral-white);
+  background-color: var(--primary-brand);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: row-reverse;
+  cursor: pointer;
+}
+.transaction__button img {
+  filter: brightness(0) invert(1);
+}
 .transactions__header {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr) 40px; /* added column for delete button */
   font-weight: bold;
   color: var(--neutral-grey-1);
   border-bottom: 1px solid var(--system-blue);
@@ -33,14 +60,11 @@
 
 .transaction {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr) 40px; /* match header for delete button */
   padding: 16px 8px;
   transition: background 0.5s ease;
   border-radius: 8px;
-}
-
-.transaction:hover {
-  background-color: var(--neutral-soft-grey-2);
+  align-items: center;
 }
 
 .transaction__item {
@@ -57,8 +81,38 @@
   color: var(--system-red);
 }
 
-.desktopOnly {
+.deleteButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+
+.desktop__only {
   display: grid;
+}
+/* Changing the color of SVG */
+.delete {
+  filter: brightness(0) saturate(100%) invert(46%) sepia(9%) saturate(747%) hue-rotate(169deg) brightness(91%) contrast(87%);
+}
+.no__data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  position: absolute;
+  top: 45%;
+  left: 39%;
+  color: var(--neutral-grey-1);
+}
+.no__data img {
+  filter: brightness(0) saturate(100%) invert(46%) sepia(9%) saturate(747%) hue-rotate(169deg) brightness(91%) contrast(87%);
 }
 
 @media (max-width: 790px) {
@@ -67,18 +121,20 @@
     max-width: 380px;
   }
 
-  .desktopOnly {
+  .desktop__only {
     display: none;
   }
+
   .transactions__title {
     padding: 20px 8px;
   }
+
   .transaction {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto; /* main content + delete button */
     grid-template-areas:
       'date price'
-      'description description';
+      'description delete';
     gap: 8px;
     padding: 14px 16px;
     background-color: var(--neutral-soft-grey-3);
@@ -87,7 +143,6 @@
 
   .transaction__item.date {
     grid-area: date;
-    font-weight: bold;
     justify-content: flex-start;
   }
 
@@ -96,13 +151,18 @@
     grid-area: price;
     justify-content: flex-end;
     text-align: right;
-    font-weight: bold;
   }
 
   .transaction__item.description {
     grid-area: description;
     line-height: 1.4;
     justify-content: flex-start;
+  }
+
+  .transaction__item:last-child {
+    grid-area: delete;
+    justify-self: end;
+    align-self: end;
   }
 
   /* Hide income div if no value */
@@ -123,8 +183,10 @@
   .transaction__item > .income.hasValue::after,
   .transaction__item > .expense.hasValue::after {
     content: 'تومان';
-    font-weight: bold;
     color: inherit;
     margin-right: 4px;
+  }
+  .no__data {
+    left: 25%;
   }
 }
