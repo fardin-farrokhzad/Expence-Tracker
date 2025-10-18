@@ -21,7 +21,7 @@ const TransactionTable = ({ data, addTransaction, removeTransaction }) => {
         <h2 className={styles.transactions__title}>تراکنش‌ها</h2>
         <button className={styles.transaction__button} onClick={() => setModalOpen(true)}>
           <span>افزودن تراکنش</span>
-          <img src='/src/assets/SVGs/Outline/Plus.svg' alt='' />
+          <img src='/src/assets/svg/outline/Plus.svg' alt='' />
         </button>
       </div>
 
@@ -72,7 +72,7 @@ const TransactionTable = ({ data, addTransaction, removeTransaction }) => {
                 {/* Delete button */}
                 <div className={styles.transaction__item}>
                   <button className={styles.deleteButton} onClick={() => removeTransaction(item.id)}>
-                    <img src='/src/assets/SVGs/Outline/Delete.svg' className={styles.delete} alt='' />
+                    <img src='/src/assets/svg/outline/Delete.svg' className={styles.delete} alt='' />
                   </button>
                 </div>
               </div>

@@ -120,7 +120,7 @@
 .close {
   width: 22px;
   height: 22px;
-  background-image: url('/src/assets/SVGs/Outline/Close.svg');
+  background-image: url('/src/assets/svg/outline/Close.svg');
   background-size: contain;
   background-repeat: no-repeat;
 }
