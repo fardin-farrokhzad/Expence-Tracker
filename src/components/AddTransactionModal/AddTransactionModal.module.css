@@ -122,7 +122,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
   left: 8px;
   cursor: pointer;
 }
-.input {
+.not__filled {
   color: transparent;
 }
 
