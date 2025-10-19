@@ -1,4 +1,3 @@
-// TransactionTable.jsx
 import { useState } from 'react';
 import styles from './TransactionTable.module.css';
 import AddTransactionModal from '../AddTransactionModal/AddTransactionModal';
