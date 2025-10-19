@@ -42,9 +42,7 @@
   flex-direction: row-reverse;
   cursor: pointer;
 }
-.transaction__button img {
-  filter: brightness(0) invert(1);
-}
+
 .transactions__header {
   display: grid;
   grid-template-columns: repeat(4, 1fr) 40px; /* added column for delete button */
@@ -98,7 +96,13 @@
 }
 /* Changing the color of SVG */
 .delete {
-  filter: brightness(0) saturate(100%) invert(46%) sepia(9%) saturate(747%) hue-rotate(169deg) brightness(91%) contrast(87%);
+  fill: var(--neutral-grey-1);
+}
+.plus {
+  fill: var(--neutral-white);
+}
+.no__data__icon {
+  fill: var(--neutral-grey-1);
 }
 .no__data {
   display: flex;
@@ -110,9 +114,6 @@
   top: 45%;
   left: 39%;
   color: var(--neutral-grey-1);
-}
-.no__data img {
-  filter: brightness(0) saturate(100%) invert(46%) sepia(9%) saturate(747%) hue-rotate(169deg) brightness(91%) contrast(87%);
 }
 
 @media (max-width: 790px) {
@@ -166,17 +167,27 @@
   }
 
   /* Hide income div if no value */
-  .transaction > .transaction__item:nth-child(2):has(> span.income:not(.hasValue)) {
+  .transaction
+    > .transaction__item:nth-child(2):has(
+      > span.income:not(.hasValue)
+    ) {
     display: none;
   }
 
   /* Hide expense div if no value */
-  .transaction > .transaction__item:nth-child(3):has(> span.expense:not(.hasValue)) {
+  .transaction
+    > .transaction__item:nth-child(3):has(
+      > span.expense:not(.hasValue)
+    ) {
     display: none;
   }
 
   /* If both have values, prioritize income by hiding expense */
-  .transaction > .transaction__item:nth-child(2):has(> span.income.hasValue) + .transaction__item:nth-child(3) {
+  .transaction
+    > .transaction__item:nth-child(2):has(
+      > span.income.hasValue
+    )
+    + .transaction__item:nth-child(3) {
     display: none;
   }
 
