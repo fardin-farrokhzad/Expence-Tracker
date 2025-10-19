@@ -1,4 +1,3 @@
-// AddTransactionModal.jsx
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './AddTransactionModal.module.css';
@@ -10,18 +9,20 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
   const [description, setDescription] = useState('');
 
   // Prevent background scroll when modal is open
+  if (isOpen) {
+    document.body.classList.add('modal');
+  } else {
+    document.body.classList.remove('modal');
+  }
+  // Reset form when modal closes
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
+    if (!isOpen) {
+      setDate('');
+      setAmount('');
+      setType('income');
+      setDescription('');
     }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
   }, [isOpen]);
-
-  if (!isOpen) return null;
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -34,14 +35,11 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
       description,
     });
 
-    setDate('');
-    setAmount('');
-    setType('income');
-    setDescription('');
     onClose();
   };
+  if (!isOpen) return null;
 
-  return ReactDOM.createPortal(
+  return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <div className={styles.header}>
@@ -56,14 +54,14 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
           <label className={styles.label}>
             تاریخ
             <div className={`${styles.input__wrapper} ${styles.date}`}>
-              <input type='text' value={date} onChange={e => setDate(e.target.value)} className={styles.input} />
+              <input type='date' value={date} onChange={e => setDate(e.target.value)} className={styles.input} required />
             </div>
           </label>
 
           {/* Amount */}
           <label className={styles.label}>
             مبلغ (تومان)
-            <input type='number' value={amount} onChange={e => setAmount(e.target.value)} className={styles.input} />
+            <input type='number' value={amount} onChange={e => setAmount(e.target.value)} className={styles.input} required />
           </label>
 
           {/* Type */}
@@ -82,7 +80,7 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
           {/* Description */}
           <label className={styles.label}>
             شرح
-            <input type='text' value={description} onChange={e => setDescription(e.target.value)} className={styles.input} />
+            <input type='text' value={description} onChange={e => setDescription(e.target.value)} className={styles.input} required />
           </label>
 
           {/* Footer Buttons */}
@@ -96,8 +94,7 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
           </div>
         </form>
       </div>
-    </div>,
-    document.body
+    </div>
   );
 };
 

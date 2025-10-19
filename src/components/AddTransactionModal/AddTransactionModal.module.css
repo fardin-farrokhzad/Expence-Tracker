@@ -43,20 +43,7 @@
   flex-direction: column;
   gap: 4px;
 }
-.date {
-  position: relative;
-}
-.date::after {
-  content: '';
-  position: absolute;
-  left: 10px;
-  top: 7px;
-  bottom: 0;
-  height: 24px;
-  width: 24px;
-  background-image: url('/src/assets/SVGs/Outline/Calendar.svg');
-  filter: brightness(0) saturate(100%) invert(42%) sepia(90%) saturate(1352%) hue-rotate(195deg) brightness(97%) contrast(93%);
-}
+
 .label {
   display: flex;
   flex-direction: row;
@@ -124,6 +111,24 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+input[type='date']::-webkit-calendar-picker-indicator {
+  background: url('/src/assets/svg/outline/calendar-blue.svg') no-repeat center center;
+  opacity: 1;
+  display: block;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 8px;
+  cursor: pointer;
+}
+
+.date input {
+  text-align: right;
+  display: flex;
+  justify-content: end;
+  position: relative;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -152,7 +157,7 @@ input[type='number'] {
   }
   .close {
     width: 24px;
-    background-image: url('/src/assets/SVGs/Outline/Line1.svg');
+    background-image: url('/src/assets/svg/outline/line1.svg');
   }
   .header {
     flex-direction: column-reverse;
