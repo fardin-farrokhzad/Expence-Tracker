@@ -45,7 +45,7 @@
 
 .transactions__header {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 40px; /* added column for delete button */
+  grid-template-columns: repeat(4, 1fr) 40px; /* column for delete button */
   font-weight: bold;
   color: var(--neutral-grey-1);
   border-bottom: 1px solid var(--system-blue);
@@ -167,27 +167,17 @@
   }
 
   /* Hide income div if no value */
-  .transaction
-    > .transaction__item:nth-child(2):has(
-      > span.income:not(.hasValue)
-    ) {
+  .transaction > .transaction__item:nth-child(2):has(> span.income:not(.hasValue)) {
     display: none;
   }
 
   /* Hide expense div if no value */
-  .transaction
-    > .transaction__item:nth-child(3):has(
-      > span.expense:not(.hasValue)
-    ) {
+  .transaction > .transaction__item:nth-child(3):has(> span.expense:not(.hasValue)) {
     display: none;
   }
 
   /* If both have values, prioritize income by hiding expense */
-  .transaction
-    > .transaction__item:nth-child(2):has(
-      > span.income.hasValue
-    )
-    + .transaction__item:nth-child(3) {
+  .transaction > .transaction__item:nth-child(2):has(> span.income.hasValue) + .transaction__item:nth-child(3) {
     display: none;
   }
 
