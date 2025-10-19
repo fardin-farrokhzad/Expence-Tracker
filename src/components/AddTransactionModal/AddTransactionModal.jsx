@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import styles from './AddTransactionModal.module.css';
 
 const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
@@ -14,6 +13,7 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
   } else {
     document.body.classList.remove('modal');
   }
+
   // Reset form when modal closes
   useEffect(() => {
     if (!isOpen) {
@@ -26,17 +26,45 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!date || !amount || !description) return;
 
+    const trimmedDescription = description.trim();
+
+    // Integrity checks if when input does not have the attribute required
+    if (!date) return alert('تاریخ را وارد کنید.');
+    const selectedDate = new Date(date);
+    if (isNaN(selectedDate.getTime())) {
+      return alert('تاریخ نامعتبر است.');
+    }
+
+    if (!amount) return alert('مبلغ را وارد کنید.');
+    const numericAmount = Number(amount);
+    if (numericAmount <= 0) {
+      return alert('مبلغ تراکنش باید عددی مثبت باشد.');
+    }
+
+    if (!['income', 'expense'].includes(type)) {
+      return alert('نوع تراکنش نامعتبر است.');
+    }
+
+    if (!trimmedDescription) {
+      return alert('شرح تراکنش نمی‌تواند خالی باشد.');
+    }
+
+    if (trimmedDescription.length > 50) {
+      return alert('شرح نباید بیشتر از 50 کاراکتر باشد.');
+    }
+
+    // Submit clean data
     onSubmit({
       date,
-      amount: Number(amount),
+      amount: numericAmount,
       type,
-      description,
+      description: trimmedDescription,
     });
 
     onClose();
   };
+
   if (!isOpen) return null;
 
   return (
@@ -54,7 +82,13 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
           <label className={styles.label}>
             تاریخ
             <div className={`${styles.input__wrapper} ${styles.date}`}>
-              <input type='date' value={date} onChange={e => setDate(e.target.value)} className={styles.input} required />
+              <input
+                type='date'
+                value={date}
+                onChange={e => setDate(e.target.value)}
+                className={`${styles.input} ${date ? styles.filled : ''}`}
+                required
+              />
             </div>
           </label>
 
