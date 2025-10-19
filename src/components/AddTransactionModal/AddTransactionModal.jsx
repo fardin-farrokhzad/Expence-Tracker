@@ -86,7 +86,7 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
                 type='date'
                 value={date}
                 onChange={e => setDate(e.target.value)}
-                className={`${styles.input} ${date ? styles.filled : ''}`}
+                className={`${styles.input} ${date ? styles.filled : styles.not__filled}`}
                 required
               />
             </div>
