@@ -122,6 +122,13 @@ input[type='date']::-webkit-calendar-picker-indicator {
   left: 8px;
   cursor: pointer;
 }
+.input {
+  color: transparent;
+}
+
+.filled {
+  color: #000;
+}
 
 .date input {
   text-align: right;
