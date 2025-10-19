@@ -65,9 +65,7 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
     onClose();
   };
 
-  if (!isOpen) return null;
-
-  return (
+  return isOpen ? (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <div className={styles.header}>
@@ -129,7 +127,7 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
         </form>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default AddTransactionModal;
