@@ -3,9 +3,9 @@ import styles from './TransactionTable.module.css';
 import AddTransactionModal from '../AddTransactionModal/AddTransactionModal';
 
 // Import SVG files
-import PlusIcon from '/src/assets/svg/outline/plus.svg?react';
-import DangerCircleIcon from '/src/assets/svg/outline/danger-circle.svg?react';
-import DeleteIcon from '/src/assets/svg/outline/delete.svg?react';
+import PlusIcon from '../../assets/svg/outline/plus.svg?react';
+import DangerCircleIcon from '../../assets/svg/outline/danger-circle.svg?react';
+import DeleteIcon from '../../assets/svg/outline/delete.svg?react';
 
 // Convert numbers to Persian
 const numberToPersian = number => number?.toString().replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]) || '';
