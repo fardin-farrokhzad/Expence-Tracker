@@ -107,7 +107,7 @@
 .close {
   width: 22px;
   height: 22px;
-  background-image: url('/src/assets/svg/outline/Close.svg');
+  background-image: url('/src/assets/svg/outline/close.svg');
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -121,13 +121,6 @@ input[type='date']::-webkit-calendar-picker-indicator {
   position: absolute;
   left: 8px;
   cursor: pointer;
-}
-.not__filled {
-  color: transparent;
-}
-
-.filled {
-  color: #000;
 }
 
 .date input {
