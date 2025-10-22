@@ -2,7 +2,7 @@
   /* Primary */
   --primary-light: #2b80ed;
   --primary-dark: #0b8ba3;
-  --primary-brand: #f9d3b8;
+  --primary-brand: #0e33f3;
 
   /* Neutrals */
   --neutral-dark-1: #1f2933;
@@ -48,4 +48,7 @@ body {
   min-height: 120vh;
   width: 100%;
   background-color: var(--neutral-soft-grey-2);
+}
+body.modal {
+  overflow: hidden;
 }
