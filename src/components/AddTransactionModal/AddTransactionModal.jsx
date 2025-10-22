@@ -1,7 +1,8 @@
+import React from 'react';
 import styles from './AddTransactionModal.module.css';
 
-const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
-  // Form action handler
+function AddTransactionModal({ isOpen, onClose, onSubmit }) {
+  // Handle form submission and validation
   function handleFormAction(formData) {
     const date = formData.get('date');
     const amount = formData.get('amount');
@@ -113,6 +114,6 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
       </div>
     </div>
   ) : null;
-};
+}
 
 export default AddTransactionModal;
