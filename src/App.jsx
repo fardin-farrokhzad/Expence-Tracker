@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TransactionTable from './components/TransactionTable/TransactionTable';
-import './App.css';
+import styles from './App.module.css';
 
 function App() {
   const [data, setData] = useState([]);
@@ -34,7 +34,11 @@ function App() {
     });
   }
 
-  return <TransactionTable data={data} addTransaction={addTransaction} removeTransaction={removeTransaction} />;
+  return (
+    <div className={styles.container}>
+      <TransactionTable data={data} addTransaction={addTransaction} removeTransaction={removeTransaction} />
+    </div>
+  );
 }
 
 export default App;
