@@ -6,7 +6,7 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const storedData = localStorage.getItem('transactions');
+    const storedData = localStorage.getItem('expenseTrackerData');
     if (storedData) {
       setData(JSON.parse(storedData));
     }
@@ -20,7 +20,7 @@ function App() {
     };
     setData(prev => {
       const newData = [newTransaction, ...prev];
-      localStorage.setItem('transactions', JSON.stringify(newData));
+      localStorage.setItem('expenseTrackerData', JSON.stringify(newData));
       return newData;
     });
   }
@@ -29,7 +29,7 @@ function App() {
   function removeTransaction(id) {
     setData(prev => {
       const newData = prev.filter(item => item.id !== id);
-      localStorage.setItem('transactions', JSON.stringify(newData));
+      localStorage.setItem('expenseTrackerData', JSON.stringify(newData));
       return newData;
     });
   }
