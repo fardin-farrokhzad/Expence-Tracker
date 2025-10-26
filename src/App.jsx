@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import TransactionTable from './components/TransactionTable/TransactionTable';
-import styles from './App.module.css';
+import './App.css';
 
 function App() {
   const [data, setData] = useState(() => {
     // Load initial data from localStorage
-    const storedData = localStorage.getItem('expenseTrackerData');
-    return storedData ? JSON.parse(storedData) : [];
+    return localStorage.getItem('expenseTrackerData') ? JSON.parse(localStorage.getItem('expenseTrackerData')) : [];
   });
 
   // Save data to localStorage whenever it changes
@@ -16,11 +15,13 @@ function App() {
 
   // Add transaction
   function addTransaction(transaction) {
-    const newTransaction = {
-      ...transaction,
-      id: Date.now(),
-    };
-    setData(prev => [newTransaction, ...prev]);
+    setData(prev => [
+      {
+        ...transaction,
+        id: Date.now(),
+      },
+      ...prev,
+    ]);
   }
 
   // Remove transaction
@@ -29,7 +30,7 @@ function App() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className='container'>
       <TransactionTable data={data} addTransaction={addTransaction} removeTransaction={removeTransaction} />
     </div>
   );
