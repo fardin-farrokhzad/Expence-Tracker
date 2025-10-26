@@ -35,15 +35,15 @@ function TransactionList({ data, removeTransaction }) {
 
             {/* Income */}
             <div className={styles.transaction__item}>
-              <span className={`${styles.income} ${item.type === 'income' && item.amount > 0 ? styles.hasValue : ''}`}>
-                {item.type === 'income' && item.amount > 0 ? `${numberToPersian(item.amount)}+` : ''}
+              <span className={`${styles.income} ${item.type === 'income' ? styles.hasValue : ''}`}>
+                {item.type === 'income' ? `${numberToPersian(item.amount)}+` : ''}
               </span>
             </div>
 
             {/* Expense */}
             <div className={styles.transaction__item}>
-              <span className={`${styles.expense} ${item.type === 'expense' && item.amount > 0 ? styles.hasValue : ''}`}>
-                {item.type === 'expense' && item.amount > 0 ? `${numberToPersian(item.amount)}-` : ''}
+              <span className={`${styles.expense} ${item.type === 'expense' ? styles.hasValue : ''}`}>
+                {item.type === 'expense' ? `${numberToPersian(item.amount)}-` : ''}
               </span>
             </div>
 
