@@ -76,9 +76,20 @@
   gap: 20px;
   margin-top: 5px;
 }
+.radio__group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 .radio__group :nth-child(2) {
   padding-left: 6rem;
 }
+input[type='radio'] {
+  accent-color: var(--primary-brand);
+  width: 14px;
+  height: 14px;
+}
+
 .footer {
   display: flex;
   justify-content: flex-end;
@@ -112,7 +123,7 @@
   background-repeat: no-repeat;
 }
 input[type='date']::-webkit-calendar-picker-indicator {
-  background: url('/src/assets/svg/outline/calendar-blue.svg') no-repeat center center;
+  background: url('/src/assets/svg/outline/calendar.svg') no-repeat center center;
   opacity: 1;
   display: block;
   background-repeat: no-repeat;
@@ -142,7 +153,9 @@ input[type='number'] {
 }
 @media (max-width: 790px) {
   .modal {
-    width: 100%;
+    justify-self: center;
+
+    width: 412px;
     max-width: 100%;
     position: absolute;
     bottom: 0;
@@ -156,13 +169,14 @@ input[type='number'] {
     gap: 0;
   }
   .close {
-    width: 24px;
+    width: 26px;
     background-image: url('/src/assets/svg/outline/line1.svg');
   }
   .header {
+    font-weight: 500;
     flex-direction: column-reverse;
     font-size: 14px;
-    gap: 16px;
+    gap: 9px;
   }
   .footer {
     width: 100%;
