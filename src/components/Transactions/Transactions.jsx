@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './TransactionTable.module.css';
+import styles from './Transactions.module.css';
 import AddTransactionModal from '../AddTransactionModal/AddTransactionModal';
 import PlusIcon from '../../assets/svg/outline/plus.svg?react';
 import DangerCircleIcon from '../../assets/svg/outline/danger-circle.svg?react';

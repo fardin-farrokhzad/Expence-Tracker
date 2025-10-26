@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TransactionTable from './components/TransactionTable/TransactionTable';
+import TransactionTable from './components/Transactions/Transactions';
 import './App.css';
 
 function App() {
