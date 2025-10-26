@@ -18,7 +18,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 34px;
+  padding-bottom: 44px;
 }
 
 .transactions__title {
@@ -67,6 +67,9 @@
 }
 
 @media (max-width: 790px) {
+  .title__wrapper {
+    padding-bottom: 24px;
+  }
   .transactions {
     padding: 1rem;
     max-width: 380px;

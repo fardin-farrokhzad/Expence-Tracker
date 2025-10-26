@@ -1,6 +1,6 @@
 .transactions__header {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 40px; /* column for delete button */
+  grid-template-columns: 1fr 1fr 1fr 1.5fr 34px; /* column for delete button */
   font-weight: bold;
   color: var(--neutral-grey-1);
   border-bottom: 1px solid var(--system-blue);
@@ -8,12 +8,12 @@
 }
 
 .transactions__list {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .transaction {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 40px; /* match header for delete button */
+  grid-template-columns: 1fr 1fr 1fr 1.5fr 34px; /* match header for delete button */
   padding: 16px 8px;
   transition: background 0.5s ease;
   border-radius: 8px;
@@ -23,6 +23,7 @@
 .transaction__item {
   display: flex;
   align-items: center;
+  overflow-wrap: break-word;
   gap: 6px;
 }
 
