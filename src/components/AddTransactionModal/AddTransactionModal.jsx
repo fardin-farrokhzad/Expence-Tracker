@@ -1,7 +1,8 @@
+import React from 'react';
 import styles from './AddTransactionModal.module.css';
 
-const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
-  // Form action handler
+function AddTransactionModal({ isOpen, onClose, onSubmit }) {
+  // Handle form submission and validation
   function handleFormAction(formData) {
     const date = formData.get('date');
     const amount = formData.get('amount');
@@ -52,36 +53,16 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
       description,
     });
 
-    // Remove modal class and close
-    document.body.classList.remove('modal');
+    // Close modal
     onClose();
   }
 
-  // Apply modal class when open
-  if (isOpen) {
-    document.body.classList.add('modal');
-  } else {
-    document.body.classList.remove('modal');
-  }
-
   return isOpen ? (
-    <div
-      className={styles.overlay}
-      onClick={() => {
-        document.body.classList.remove('modal');
-        onClose();
-      }}
-    >
+    <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <div className={styles.header}>
           <h4>افزودن تراکنش</h4>
-          <button
-            className={styles.close__button}
-            onClick={() => {
-              document.body.classList.remove('modal');
-              onClose();
-            }}
-          >
+          <button className={styles.close__button} onClick={onClose}>
             <div className={styles.close}></div>
           </button>
         </div>
@@ -122,14 +103,7 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
 
           {/* Footer Buttons */}
           <div className={styles.footer}>
-            <button
-              type='button'
-              className={styles.cancel__button}
-              onClick={() => {
-                document.body.classList.remove('modal');
-                onClose();
-              }}
-            >
+            <button type='button' className={styles.cancel__button} onClick={onClose}>
               انصراف
             </button>
             <button type='submit' className={styles.submit__button}>
@@ -140,6 +114,6 @@ const AddTransactionModal = ({ isOpen, onClose, onSubmit }) => {
       </div>
     </div>
   ) : null;
-};
+}
 
 export default AddTransactionModal;

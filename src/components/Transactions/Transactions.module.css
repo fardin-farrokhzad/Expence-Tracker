@@ -1,0 +1,85 @@
+.transactions {
+  justify-self: center;
+  align-self: center;
+  align-items: center;
+  padding: 36px 24px;
+  border-radius: 16px;
+  background-color: var(--neutral-white);
+  min-height: 803px;
+  width: 816px;
+  direction: rtl;
+  margin: 1rem;
+  color: var(--neutral-dark-1);
+  position: relative;
+}
+
+.title__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 44px;
+}
+
+.transactions__title {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 0;
+  padding-right: 0;
+  font-size: 20px;
+}
+
+.transaction__button {
+  padding: 4px 24px;
+  width: 199px;
+  height: 48px;
+  border-radius: 8px;
+  border: none;
+  font-size: 20px;
+  color: var(--neutral-white);
+  background-color: var(--primary-brand);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: row-reverse;
+  cursor: pointer;
+}
+
+.plus {
+  fill: var(--neutral-white);
+}
+
+.no__data__icon {
+  fill: var(--neutral-grey-1);
+}
+
+.no__data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  position: absolute;
+  top: 45%;
+  left: 39%;
+  color: var(--neutral-grey-1);
+}
+
+@media (max-width: 790px) {
+  .title__wrapper {
+    padding-bottom: 24px;
+  }
+  .transactions {
+    padding: 1rem;
+    max-width: 380px;
+  }
+
+  .transactions__title {
+    padding: 20px 8px;
+  }
+
+  .no__data {
+    left: 25%;
+  }
+}

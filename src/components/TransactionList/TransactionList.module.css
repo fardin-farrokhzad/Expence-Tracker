@@ -1,51 +1,6 @@
-.transactions {
-  justify-self: center;
-  align-self: center;
-  align-items: center;
-  padding: 36px 24px;
-  border-radius: 16px;
-  background-color: var(--neutral-white);
-  min-height: 803px;
-  width: 816px;
-  direction: rtl;
-  margin: 1rem;
-  color: var(--neutral-dark-1);
-  position: relative;
-}
-.title__wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 34px;
-}
-.transactions__title {
-  text-align: center;
-  font-weight: bold;
-  padding-top: 0;
-  padding-right: 0;
-  font-size: 20px;
-}
-.transaction__button {
-  padding: 4px 24px;
-  width: 199px;
-  height: 48px;
-  border-radius: 8px;
-  border: none;
-  font-size: 20px;
-  color: var(--neutral-white);
-  background-color: var(--primary-brand);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex-direction: row-reverse;
-  cursor: pointer;
-}
-
 .transactions__header {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 40px; /* column for delete button */
+  grid-template-columns: 1fr 1fr 1fr 1.5fr 34px; /* column for delete button */
   font-weight: bold;
   color: var(--neutral-grey-1);
   border-bottom: 1px solid var(--system-blue);
@@ -53,12 +8,12 @@
 }
 
 .transactions__list {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .transaction {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 40px; /* match header for delete button */
+  grid-template-columns: 1fr 1fr 1fr 1.5fr 34px; /* match header for delete button */
   padding: 16px 8px;
   transition: background 0.5s ease;
   border-radius: 8px;
@@ -68,6 +23,7 @@
 .transaction__item {
   display: flex;
   align-items: center;
+  overflow-wrap: break-word;
   gap: 6px;
 }
 
@@ -91,43 +47,19 @@
   padding: 0;
 }
 
-.desktop__only {
-  display: grid;
-}
-/* Changing the color of SVG */
+/* Changing the color of SVG icons */
 .delete {
   fill: var(--neutral-grey-1);
 }
-.plus {
-  fill: var(--neutral-white);
-}
-.no__data__icon {
-  fill: var(--neutral-grey-1);
-}
-.no__data {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 4px;
-  position: absolute;
-  top: 45%;
-  left: 39%;
-  color: var(--neutral-grey-1);
+
+/* Header visibility for desktop only */
+.desktop__only {
+  display: grid;
 }
 
 @media (max-width: 790px) {
-  .transactions {
-    padding: 1rem;
-    max-width: 380px;
-  }
-
   .desktop__only {
     display: none;
-  }
-
-  .transactions__title {
-    padding: 20px 8px;
   }
 
   .transaction {
@@ -186,8 +118,5 @@
     content: 'تومان';
     color: inherit;
     margin-right: 4px;
-  }
-  .no__data {
-    left: 25%;
   }
 }

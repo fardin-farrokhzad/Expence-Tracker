@@ -1,61 +1,39 @@
-import { useState, useEffect } from 'react';
-import TransactionTable from './components/TransactionTable/TransactionTable';
+import React, { useState, useEffect } from 'react';
+import TransactionTable from './components/Transactions/Transactions';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(() => {
+    // Load initial data from localStorage
+    return localStorage.getItem('expenseTrackerData') ? JSON.parse(localStorage.getItem('expenseTrackerData')) : [];
+  });
 
-  // Fetch initial data from JSON server
+  // Save data to localStorage whenever it changes
   useEffect(() => {
-    fetch('http://localhost:8000/data')
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then(result => setData(result))
-      .catch(error => {
-        console.error(`Fetching data failed: ${error.message}`);
-      });
-  }, []);
+    localStorage.setItem('expenseTrackerData', JSON.stringify(data));
+  }, [data]);
 
   // Add transaction
-  const addTransaction = async transaction => {
-    try {
-      const response = await fetch('http://localhost:8000/data', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(transaction),
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const newTransaction = await response.json();
-      setData(prev => [newTransaction, ...prev]);
-    } catch (error) {
-      console.error(`Error adding transaction: ${error.message}`);
-    }
-  };
+  function addTransaction(transaction) {
+    setData(prev => [
+      {
+        ...transaction,
+        id: Date.now(),
+      },
+      ...prev,
+    ]);
+  }
 
   // Remove transaction
-  const removeTransaction = async id => {
-    try {
-      const response = await fetch(`http://localhost:8000/data/${id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      setData(prev => prev.filter(item => item.id !== id));
-    } catch (error) {
-      console.error(`Error deleting transaction: ${error.message}`);
-    }
-  };
+  function removeTransaction(id) {
+    setData(prev => prev.filter(item => item.id !== id));
+  }
 
-  return <TransactionTable data={data} addTransaction={addTransaction} removeTransaction={removeTransaction} />;
+  return (
+    <div className='container'>
+      <TransactionTable data={data} addTransaction={addTransaction} removeTransaction={removeTransaction} />
+    </div>
+  );
 }
 
 export default App;
