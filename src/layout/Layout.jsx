@@ -5,12 +5,12 @@ import styles from './Layout.module.css';
 
 function Layout() {
   return (
-    <div>
+    <>
       <Header />
       <main className={styles.main}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 }
 

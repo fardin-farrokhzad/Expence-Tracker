@@ -18,8 +18,3 @@ svg {
   font-size: 20px;
   color: var(--neutral-dark-1);
 }
-@media (max-width: 790px) {
-  /* .container {
-    width: 380px;
-  } */
-}
