@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './Transactions.module.css';
-import AddTransactionModal from '../AddTransactionModal/AddTransactionModal';
-import PlusIcon from '../../assets/svg/outline/plus.svg?react';
-import DangerCircleIcon from '../../assets/svg/outline/danger-circle.svg?react';
-import TransactionList from '../TransactionList/TransactionList';
+import AddTransactionModal from './components/AddTransactionModal/AddTransactionModal';
+import PlusIcon from '/src/assets/svg/outline/plus.svg?react';
+import DangerCircleIcon from '/src/assets/svg/outline/danger-circle.svg?react';
+import TransactionList from './components/TransactionList/TransactionList';
 
 function TransactionTable({ data, addTransaction, removeTransaction }) {
   const [modalOpen, setModalOpen] = useState(false);
