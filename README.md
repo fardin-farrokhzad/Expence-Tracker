@@ -13,8 +13,6 @@ The focus of this project is on clean architecture, maintainable code, and pract
 - Structured multi-page routing with **React Router**  
 - Clean and consistent code quality ensured by **ESLint** and **Prettier**
 
-Expense Tracker demonstrates a complete front-end architecture designed for scalability, readability, and reliability. It represents a production-ready React application that emphasizes usability, simplicity, and high-quality code structure.
-
 ### Built With
 - **React.js**
 - **Vite**
