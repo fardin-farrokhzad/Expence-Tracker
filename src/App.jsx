@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import TransactionTable from './components/Transactions/Transactions';
+import TransactionTable from './pages/Transactions/Transactions';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState(() => {
-    // Load initial data from localStorage
-    return localStorage.getItem('expenseTrackerData') ? JSON.parse(localStorage.getItem('expenseTrackerData')) : [];
-  });
+  const [data, setData] = useState(localStorage.getItem('expenseTrackerData') ? JSON.parse(localStorage.getItem('expenseTrackerData')) : []);
 
   // Save data to localStorage whenever it changes
   useEffect(() => {

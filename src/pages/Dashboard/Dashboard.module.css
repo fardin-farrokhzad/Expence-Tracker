@@ -1,0 +1,13 @@
+.container {
+  direction: rtl;
+  padding: 36px 24px;
+  border-radius: 16px;
+  background-color: var(--neutral-white);
+  color: var(--neutral-dark-1);
+  font-weight: 600;
+  font-size: 20px;
+  height: 120px;
+  width: 816px;
+  align-self: flex-start;
+  margin: 1rem;
+}

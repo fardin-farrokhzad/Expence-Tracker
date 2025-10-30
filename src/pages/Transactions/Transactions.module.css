@@ -38,9 +38,10 @@
   font-size: 20px;
   color: var(--neutral-white);
   background-color: var(--primary-brand);
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  direction: ltr;
   align-items: center;
-  justify-content: center;
   gap: 10px;
   flex-direction: row-reverse;
   cursor: pointer;

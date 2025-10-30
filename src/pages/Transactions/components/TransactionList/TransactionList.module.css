@@ -7,10 +7,6 @@
   padding-bottom: 0.75rem;
 }
 
-.transactions__list {
-  /* margin-top: 1rem; */
-}
-
 .transaction {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1.5fr 34px; /* match header for delete button */
