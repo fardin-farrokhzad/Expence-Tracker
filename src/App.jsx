@@ -1,35 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import TransactionTable from './pages/Transactions/Transactions';
-import './App.css';
+import { Routes, Route, Navigate } from 'react-router';
+import Transactions from './pages/Transactions/Transactions';
+import Layout from './layout/Layout.jsx';
+import Dashboard from './pages/Dashboard/Dashboard.jsx';
+import NotFound from './pages/NotFound/NotFound.jsx';
 
 function App() {
-  const [data, setData] = useState(localStorage.getItem('expenseTrackerData') ? JSON.parse(localStorage.getItem('expenseTrackerData')) : []);
-
-  // Save data to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('expenseTrackerData', JSON.stringify(data));
-  }, [data]);
-
-  // Add transaction
-  function addTransaction(transaction) {
-    setData(prev => [
-      {
-        ...transaction,
-        id: Date.now(),
-      },
-      ...prev,
-    ]);
-  }
-
-  // Remove transaction
-  function removeTransaction(id) {
-    setData(prev => prev.filter(item => item.id !== id));
-  }
-
   return (
-    <div className='container'>
-      <TransactionTable data={data} addTransaction={addTransaction} removeTransaction={removeTransaction} />
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<Navigate to='/dashboard' />} />s
+        <Route path='dashboard' element={<Dashboard />} />
+        <Route path='transactions' element={<Transactions />} />
+        <Route path='*' element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 
