@@ -1,17 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Transactions.module.css';
 import AddTransactionModal from './components/AddTransactionModal/AddTransactionModal';
 import PlusIcon from '/src/assets/svg/outline/plus.svg?react';
 import DangerCircleIcon from '/src/assets/svg/outline/danger-circle.svg?react';
 import TransactionList from './components/TransactionList/TransactionList';
 
-function TransactionTable({ data, addTransaction, removeTransaction }) {
+function TransactionTable() {
   const [modalOpen, setModalOpen] = useState(false);
 
   function handleAddTransaction(transaction) {
     addTransaction(transaction);
   }
+  const [data, setData] = useState(localStorage.getItem('expenseTrackerData') ? JSON.parse(localStorage.getItem('expenseTrackerData')) : []);
 
+  // Save data to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('expenseTrackerData', JSON.stringify(data));
+  }, [data]);
+
+  // Add transaction
+  function addTransaction(transaction) {
+    setData(prev => [
+      {
+        ...transaction,
+        id: Date.now(),
+      },
+      ...prev,
+    ]);
+  }
+
+  // Remove transaction
+  function removeTransaction(id) {
+    setData(prev => prev.filter(item => item.id !== id));
+  }
   return (
     <section className={styles.transactions}>
       {/* Title + Add Button */}
