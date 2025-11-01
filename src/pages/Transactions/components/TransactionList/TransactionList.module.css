@@ -1,34 +1,42 @@
 .transactions__header {
   display: grid;
+  padding: 16px;
   grid-template-columns: 1fr 1fr 1fr 1.5fr 34px; /* column for delete button */
   font-weight: bold;
   color: var(--neutral-grey-1);
-  border-bottom: 1px solid var(--system-blue);
+  border-bottom: 1px solid var(--primary-light);
   padding-bottom: 0.75rem;
 }
 
 .transaction {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1.5fr 34px; /* match header for delete button */
+  grid-template-columns: 1fr 1fr 1fr 1.5fr 37px; /* match header for delete button */
   padding: 16px 8px;
   transition: background 0.5s ease;
   border-radius: 8px;
   align-items: center;
+  font-weight: 500;
 }
 
 .transaction__item {
   display: flex;
   align-items: center;
   overflow-wrap: break-word;
+  color: var(--neutral-dark-2);
   gap: 6px;
 }
-
+.transaction__item.description {
+  max-width: 250px;
+  font-weight: 400;
+}
 .income.hasValue {
   color: var(--system-green);
+  max-width: 145px;
 }
 
 .expense.hasValue {
   color: var(--system-red);
+  max-width: 145px;
 }
 
 .deleteButton {
