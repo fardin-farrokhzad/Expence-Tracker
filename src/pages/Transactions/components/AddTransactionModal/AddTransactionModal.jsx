@@ -29,7 +29,10 @@ function AddTransactionModal({ isOpen, onClose, onSubmit }) {
       alert('مبلغ تراکنش باید عددی مثبت باشد.');
       return;
     }
-
+    if (numericAmount >= 10000000000000) {
+      alert('مبلغ باید کم تر از ۱۰۰۰۰۰۰۰۰۰۰۰۰۰ باشد.');
+      return;
+    }
     if (!['income', 'expense'].includes(type)) {
       alert('نوع تراکنش نامعتبر است.');
       return;
@@ -40,8 +43,8 @@ function AddTransactionModal({ isOpen, onClose, onSubmit }) {
       return;
     }
 
-    if (description.length > 50) {
-      alert('شرح نباید بیشتر از 50 کاراکتر باشد.');
+    if (description.length > 30) {
+      alert('شرح نباید بیشتر از 30 کاراکتر باشد.');
       return;
     }
 

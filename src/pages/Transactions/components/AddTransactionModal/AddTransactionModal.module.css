@@ -21,6 +21,7 @@
   flex-direction: column;
   direction: rtl;
   gap: 20px;
+  color: var(--neutral-dark-2);
 }
 
 .header {
@@ -52,7 +53,7 @@
   justify-content: space-between;
   align-items: center;
   align-items: center;
-  color: var(--neutral-dark-1);
+  color: var(--neutral-dark-2);
 }
 
 .input__wrapper {

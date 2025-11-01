@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './TransactionList.module.css';
-import DeleteIcon from '../../assets/svg/outline/delete.svg?react';
+import DeleteIcon from '/src/assets/svg/outline/delete.svg?react';
 
 // Convert numbers to Persian
 function numberToPersian(number) {
