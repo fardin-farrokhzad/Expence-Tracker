@@ -45,4 +45,5 @@ body {
   font-style: normal;
   height: auto;
   width: 100%;
+  background-color: var(--neutral-soft-grey-2);
 }
