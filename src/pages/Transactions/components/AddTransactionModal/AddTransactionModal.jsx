@@ -1,62 +1,42 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './AddTransactionModal.module.css';
+import { TransactionContext } from '/src/context/TransactionContext.jsx';
 
-function AddTransactionModal({ isOpen, onClose, onSubmit }) {
-  // Handle form submission and validation
+function AddTransactionModal({ isOpen, onClose }) {
+  const { dispatch } = useContext(TransactionContext);
+  const [error, setError] = useState('');
+
+  function showError(message) {
+    setError(message);
+    setTimeout(() => setError(''), 3000); // Clear after 3s
+  }
+
   function handleFormAction(formData) {
     const date = formData.get('date');
     const amount = formData.get('amount');
     const type = formData.get('type');
     const description = formData.get('description')?.trim();
 
-    // Integrity checks
-    if (!date) {
-      alert('تاریخ را وارد کنید.');
-      return;
-    }
+    if (!date) return showError('تاریخ را وارد کنید.');
     const selectedDate = new Date(date);
-    if (isNaN(selectedDate.getTime())) {
-      alert('تاریخ نامعتبر است.');
-      return;
-    }
+    if (isNaN(selectedDate.getTime())) return showError('تاریخ نامعتبر است.');
 
-    if (!amount) {
-      alert('مبلغ را وارد کنید.');
-      return;
-    }
+    if (!amount) return showError('مبلغ را وارد کنید.');
     const numericAmount = Number(amount);
-    if (numericAmount <= 0) {
-      alert('مبلغ تراکنش باید عددی مثبت باشد.');
-      return;
-    }
-    if (numericAmount >= 10000000000000) {
-      alert('مبلغ باید کم تر از ۱۰۰۰۰۰۰۰۰۰۰۰۰۰ باشد.');
-      return;
-    }
-    if (!['income', 'expense'].includes(type)) {
-      alert('نوع تراکنش نامعتبر است.');
-      return;
-    }
+    if (numericAmount <= 0) return showError('مبلغ تراکنش باید عددی مثبت باشد.');
+    if (numericAmount >= 10000000000000) return showError('مبلغ باید کم‌تر از ۱۰,۰۰۰,۰۰۰,۰۰۰,۰۰۰ باشد.');
 
-    if (!description) {
-      alert('شرح تراکنش نمی‌تواند خالی باشد.');
-      return;
-    }
+    if (!['income', 'expense'].includes(type)) return showError('نوع تراکنش نامعتبر است.');
 
-    if (description.length > 30) {
-      alert('شرح نباید بیشتر از 30 کاراکتر باشد.');
-      return;
-    }
+    if (!description) return showError('شرح تراکنش نمی‌تواند خالی باشد.');
+    if (description.length > 30) return showError('شرح نباید بیشتر از ۳۰ کاراکتر باشد.');
 
-    // Submit clean data
-    onSubmit({
-      date,
-      amount: numericAmount,
-      type,
-      description,
+    // Add transaction
+    dispatch({
+      type: 'ADD_TRANSACTION',
+      payload: { date, amount: numericAmount, type, description },
     });
 
-    // Close modal
     onClose();
   }
 
@@ -103,6 +83,8 @@ function AddTransactionModal({ isOpen, onClose, onSubmit }) {
             شرح
             <input type='text' name='description' className={styles.input} required />
           </label>
+          {/* Error message */}
+          {error && <p className={styles.error}>{error}</p>}
 
           {/* Footer Buttons */}
           <div className={styles.footer}>
