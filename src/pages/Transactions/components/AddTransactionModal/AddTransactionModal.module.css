@@ -16,7 +16,7 @@
   border-radius: 10px;
   padding: 20px;
   width: 520px;
-  height: 388px;
+  min-height: 388px;
   display: flex;
   flex-direction: column;
   direction: rtl;
@@ -141,6 +141,37 @@ input[type='date']::-webkit-calendar-picker-indicator {
   justify-content: end;
   position: relative;
 }
+
+.error {
+  color: var(--system-red);
+  text-align: center;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  background-color: #fff1f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--system-red);
+  animation: errorPop 0.4s ease-out;
+}
+
+@keyframes errorPop {
+  0% {
+    transform: scale(0.9) translateY(10px);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.05) translateY(-2px);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.98) translateY(0);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

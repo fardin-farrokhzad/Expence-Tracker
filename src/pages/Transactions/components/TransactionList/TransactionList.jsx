@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './TransactionList.module.css';
 import DeleteIcon from '/src/assets/svg/outline/delete.svg?react';
+import { TransactionContext } from '/src/context/TransactionContext.jsx';
 
 // Convert numbers to Persian
 function numberToPersian(number) {
@@ -12,8 +13,13 @@ function dateConvert(input) {
   return input?.toString().replace(/[0-9-]/g, d => (d === '-' ? '/' : '۰۱۲۳۴۵۶۷۸۹'[d])) || '';
 }
 
-// Transaction List Component
-function TransactionList({ data, removeTransaction }) {
+function TransactionList() {
+  const { state: data, dispatch } = useContext(TransactionContext);
+
+  function handleDelete(id) {
+    dispatch({ type: 'DELETE_TRANSACTION', payload: id });
+  }
+
   return (
     <>
       {/* Table Header */}
@@ -54,7 +60,7 @@ function TransactionList({ data, removeTransaction }) {
 
             {/* Delete button */}
             <div className={styles.transaction__item}>
-              <button className={styles.deleteButton} onClick={() => removeTransaction(item.id)}>
+              <button className={styles.deleteButton} onClick={() => handleDelete(item.id)}>
                 <DeleteIcon className={styles.delete} />
               </button>
             </div>

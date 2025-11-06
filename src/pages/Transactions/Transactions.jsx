@@ -1,38 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './Transactions.module.css';
 import AddTransactionModal from './components/AddTransactionModal/AddTransactionModal';
 import PlusIcon from '/src/assets/svg/outline/plus.svg?react';
 import DangerCircleIcon from '/src/assets/svg/outline/danger-circle.svg?react';
 import TransactionList from './components/TransactionList/TransactionList';
+import { TransactionContext } from '/src/context/TransactionContext.jsx';
 
-function TransactionTable() {
+function Transactions() {
   const [modalOpen, setModalOpen] = useState(false);
+  const { state: data } = useContext(TransactionContext);
 
-  function handleAddTransaction(transaction) {
-    addTransaction(transaction);
-  }
-  const [data, setData] = useState(localStorage.getItem('expenseTrackerData') ? JSON.parse(localStorage.getItem('expenseTrackerData')) : []);
-
-  // Save data to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('expenseTrackerData', JSON.stringify(data));
-  }, [data]);
-
-  // Add transaction
-  function addTransaction(transaction) {
-    setData(prev => [
-      {
-        ...transaction,
-        id: Date.now(),
-      },
-      ...prev,
-    ]);
-  }
-
-  // Remove transaction
-  function removeTransaction(id) {
-    setData(prev => prev.filter(item => item.id !== id));
-  }
   return (
     <section className={styles.transactions}>
       {/* Title + Add Button */}
@@ -51,12 +28,12 @@ function TransactionTable() {
           <span>شما هنوز تراکنشی وارد نکرده‌اید</span>
         </div>
       ) : (
-        <TransactionList data={data} removeTransaction={removeTransaction} />
+        <TransactionList />
       )}
 
-      <AddTransactionModal isOpen={modalOpen} onClose={() => setModalOpen(false)} onSubmit={handleAddTransaction} />
+      <AddTransactionModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   );
 }
 
-export default TransactionTable;
+export default Transactions;
