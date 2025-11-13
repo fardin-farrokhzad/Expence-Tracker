@@ -40,6 +40,7 @@ function Dashboard() {
 
   return (
     <div className={styles.container}>
+      <h1>داشبورد</h1>
       {/* Summary Cards */}
       <div className={styles.summary__cards}>
         <div className={styles.card}>
@@ -57,22 +58,26 @@ function Dashboard() {
       </div>
 
       {/* Charts */}
-      <div className={styles.charts}>
-        <div className={`${styles.chart__wrapper} ${styles.bar}`}>
-          <h4>درآمد و هزینه ماه جاری</h4>
-          <BarChart monthlyIncome={monthlyTotals.income} monthlyExpense={monthlyTotals.expense} />
-        </div>
+      {data.length > 0 ? (
+        <div className={styles.charts}>
+          <div className={`${styles.chart__wrapper} ${styles.bar}`}>
+            <h4>درآمد و هزینه ماه جاری</h4>
+            <BarChart monthlyIncome={monthlyTotals.income} monthlyExpense={monthlyTotals.expense} />
+          </div>
 
-        <div className={`${styles.chart__wrapper} ${styles.line}`}>
-          <h4>روند درآمد و هزینه</h4>
-          <LineChart labels={lineChartData.labels} incomeData={lineChartData.incomeLine} expenseData={lineChartData.expenseLine} />
-        </div>
+          <div className={`${styles.chart__wrapper} ${styles.line}`}>
+            <h4>روند درآمد و هزینه</h4>
+            <LineChart labels={lineChartData.labels} incomeData={lineChartData.incomeLine} expenseData={lineChartData.expenseLine} />
+          </div>
 
-        <div className={`${styles.chart__wrapper} ${styles.doughnut}`}>
-          <h4>درآمد vs هزینه کل</h4>
-          <DoughnutChart incomeTotal={totals.incomeTotal} expenseTotal={totals.expenseTotal} />
+          <div className={`${styles.chart__wrapper} ${styles.doughnut}`}>
+            <h4>درآمد vs هزینه کل</h4>
+            <DoughnutChart incomeTotal={totals.incomeTotal} expenseTotal={totals.expenseTotal} />
+          </div>
         </div>
-      </div>
+      ) : (
+        <p className={styles.no__data}>هیچ داده‌ای موجود نیست</p>
+      )}
     </div>
   );
 }

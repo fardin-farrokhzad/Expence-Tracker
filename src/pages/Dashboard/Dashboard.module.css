@@ -84,7 +84,11 @@
 .chart__wrapper.line {
   max-width: 600px;
 }
-
+.no__data {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
 /* Responsive */
 @media (max-width: 1024px) {
   .charts {
@@ -101,12 +105,14 @@
     padding: 1rem;
     gap: 1.5rem;
   }
-
+  h1 {
+    text-align: center;
+  }
   .card {
     padding: 1rem 1.2rem;
   }
 
-  .card h3 {
+  .card span {
     font-size: 0.9rem;
   }
 
