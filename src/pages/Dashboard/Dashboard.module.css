@@ -1,13 +1,130 @@
 .container {
   direction: rtl;
-  padding: 36px 24px;
+  width: 90%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 1rem;
   border-radius: 16px;
+  font-family: 'Vazirmatn', sans-serif;
   background-color: var(--neutral-white);
   color: var(--neutral-dark-1);
+}
+
+/*Summary Cards*/
+.summary__cards {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: var(--neutral-soft-grey-3);
+  border-radius: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 1.5rem 2rem;
+  flex: 1 1 200px;
+  max-width: 400px;
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card span {
   font-weight: 600;
-  font-size: 20px;
-  height: 120px;
-  width: 816px;
-  align-self: flex-start;
-  margin: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--neutral-dark-2);
+}
+
+.card p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+.income {
+  color: var(--system-green);
+}
+.expense {
+  color: var(--system-red);
+}
+/* Charts */
+.charts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.chart__wrapper {
+  max-width: 400px;
+  max-height: 500px;
+  background: var(--neutral-soft-grey-3);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart__wrapper h4 {
+  margin-bottom: 1rem;
+  color: #444;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.chart__wrapper canvas {
+  align-self: center;
+  justify-self: center;
+}
+.chart__wrapper.line {
+  max-width: 600px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .charts {
+    grid-template-columns: 1fr;
+  }
+
+  .summary__cards {
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1rem 1.2rem;
+  }
+
+  .card h3 {
+    font-size: 0.9rem;
+  }
+
+  .card p {
+    font-size: 1.2rem;
+  }
+
+  .chart__wrapper {
+    padding: 1rem;
+  }
+
+  .chart__wrapper h4 {
+    font-size: 1rem;
+  }
+}
+
+/* Canvas Styling */
+canvas {
+  max-width: 100%;
+  height: 250px;
 }
