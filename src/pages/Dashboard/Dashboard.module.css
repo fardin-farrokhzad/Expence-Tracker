@@ -1,13 +1,145 @@
 .container {
   direction: rtl;
-  padding: 36px 24px;
+  width: 90%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 1rem auto;
   border-radius: 16px;
+  font-family: 'Vazirmatn', sans-serif;
   background-color: var(--neutral-white);
   color: var(--neutral-dark-1);
+}
+
+/* Summary Cards */
+.summary__cards {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: var(--neutral-soft-grey-3);
+  border-radius: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px;
+  padding: 1.5rem 2rem;
+  flex: 1 1 220px;
+  max-width: 350px;
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: rgba(100, 100, 111, 0.28) 0 10px 32px;
+}
+
+.card span {
   font-weight: 600;
-  font-size: 20px;
-  height: 120px;
-  width: 816px;
-  align-self: flex-start;
-  margin: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--neutral-dark-2);
+}
+
+.card p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.income {
+  color: var(--system-green);
+}
+.expense {
+  color: var(--system-red);
+}
+.balance {
+  color: var(--system-yellow);
+}
+/* Charts */
+.charts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.chart__wrapper {
+  background: var(--neutral-soft-grey-3);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  min-height: 300px;
+  width: 100%;
+}
+
+.chart__wrapper.line {
+  max-width: 650px;
+}
+.chart__wrapper.doughnut {
+  max-width: 360px;
+}
+.chart__wrapper.bar {
+  max-width: 400px;
+}
+.chart__wrapper span {
+  color: var(--neutral-dark-2);
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 0;
+  font-weight: 600;
+}
+
+.no__data {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .charts {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .summary__cards {
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .card {
+    padding: 1rem 1.2rem;
+  }
+
+  .card span {
+    font-size: 0.9rem;
+  }
+
+  .card p {
+    font-size: 1.2rem;
+  }
+
+  .chart__wrapper {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .chart__wrapper span {
+    font-size: 1rem;
+  }
 }

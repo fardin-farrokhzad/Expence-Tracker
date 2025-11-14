@@ -2,16 +2,7 @@ import React, { useContext } from 'react';
 import styles from './TransactionList.module.css';
 import DeleteIcon from '/src/assets/svg/outline/delete.svg?react';
 import { TransactionContext } from '/src/context/TransactionContext.jsx';
-
-// Convert numbers to Persian
-function numberToPersian(number) {
-  return number?.toString().replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]) || '';
-}
-
-// Convert dates to Persian
-function dateConvert(input) {
-  return input?.toString().replace(/[0-9-]/g, d => (d === '-' ? '/' : '۰۱۲۳۴۵۶۷۸۹'[d])) || '';
-}
+import { numberToPersian, dateConvert } from '/src/utils/formatters';
 
 function TransactionList() {
   const { state: data, dispatch } = useContext(TransactionContext);
