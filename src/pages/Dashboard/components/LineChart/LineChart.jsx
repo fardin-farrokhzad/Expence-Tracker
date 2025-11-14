@@ -1,49 +1,40 @@
-import React, { useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto';
+import React from 'react';
+import { LineChart as RLineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
+import { numberToPersian } from '/src/utils/formatters';
 
 function LineChart({ labels, incomeData, expenseData }) {
-  const canvasRef = useRef(null);
-  const chartRef = useRef(null);
+  // Combine data for Recharts
+  const data = labels.map((label, idx) => ({
+    date: label,
+    income: incomeData[idx],
+    expense: expenseData[idx],
+  }));
 
-  useEffect(() => {
-    if (!canvasRef.current) return;
+  // Map dataKey to Persian labels
+  const legendFormatter = value => {
+    if (value === 'income') return 'درآمد';
+    if (value === 'expense') return 'هزینه';
+    return value;
+  };
 
-    const ctx = canvasRef.current.getContext('2d');
+  return (
+    <ResponsiveContainer width='100%' height={280}>
+      <RLineChart data={data} margin={{ top: 10, right: 20, left: 10, bottom: 10 }}>
+        <CartesianGrid strokeDasharray='3 3' opacity={0.3} />
 
-    if (chartRef.current) chartRef.current.destroy();
+        <XAxis dataKey='date' tick={{ fontSize: 11 }} interval='preserveStartEnd' minTickGap={20} axisLine={false} tickLine={false} />
 
-    chartRef.current = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels,
-        datasets: [
-          {
-            label: 'درآمد',
-            data: incomeData,
-            borderColor: '#3ebd93',
-            backgroundColor: '#3ebd9340',
-            tension: 0.3,
-          },
-          {
-            label: 'هزینه',
-            data: expenseData,
-            borderColor: '#ef4e4e',
-            backgroundColor: '#ef4e4e40',
-            tension: 0.3,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { position: 'bottom' } },
-        scales: { y: { beginAtZero: true } },
-      },
-    });
+        <YAxis tick={{ fontSize: 11 }} axisLine={false} tickLine={false} width={40} tickFormatter={value => numberToPersian(value)} />
 
-    return () => chartRef.current?.destroy();
-  }, [labels, incomeData, expenseData]);
+        <Tooltip contentStyle={{ fontSize: '12px' }} formatter={value => numberToPersian(value)} />
 
-  return <canvas ref={canvasRef}></canvas>;
+        <Legend wrapperStyle={{ fontSize: 12 }} formatter={legendFormatter} />
+
+        <Line type='monotone' dataKey='income' stroke='#3ebd93' strokeWidth={2} dot={{ r: 3 }} />
+        <Line type='monotone' dataKey='expense' stroke='#ef4e4e' strokeWidth={2} dot={{ r: 3 }} />
+      </RLineChart>
+    </ResponsiveContainer>
+  );
 }
 
 export default LineChart;

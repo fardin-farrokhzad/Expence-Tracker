@@ -1,40 +1,30 @@
-import React, { useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto';
+import React from 'react';
+import { BarChart as RBarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from 'recharts';
+import { numberToPersian } from '/src/utils/formatters';
 
 function BarChart({ monthlyIncome, monthlyExpense }) {
-  const canvasRef = useRef(null);
-  const chartRef = useRef(null);
+  const data = [
+    { name: 'درآمد', value: monthlyIncome },
+    { name: 'هزینه', value: monthlyExpense },
+  ];
 
-  useEffect(() => {
-    if (!canvasRef.current) return;
+  const COLORS = ['#3ebd93', '#ef4e4e'];
 
-    const ctx = canvasRef.current.getContext('2d');
-
-    if (chartRef.current) chartRef.current.destroy();
-
-    chartRef.current = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['درآمد ماهانه', 'هزینه ماهانه'],
-        datasets: [
-          {
-            label: 'تومان',
-            data: [monthlyIncome, monthlyExpense],
-            backgroundColor: ['#3ebd93', '#ef4e4e'],
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true } },
-      },
-    });
-
-    return () => chartRef.current?.destroy();
-  }, [monthlyIncome, monthlyExpense]);
-
-  return <canvas ref={canvasRef}></canvas>;
+  return (
+    <ResponsiveContainer width='100%' height={260}>
+      <RBarChart data={data} margin={{ top: 10, right: 20, left: 5, bottom: 10 }}>
+        <CartesianGrid strokeDasharray='3 3' opacity={0.3} />
+        <XAxis dataKey='name' tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
+        <YAxis tick={{ fontSize: 12 }} axisLine={false} tickLine={false} width={40} tickFormatter={value => numberToPersian(value)} />
+        <Tooltip contentStyle={{ fontSize: 12 }} formatter={value => numberToPersian(value)} />
+        <Bar dataKey='value' radius={[6, 6, 0, 0]}>
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index]} />
+          ))}
+        </Bar>
+      </RBarChart>
+    </ResponsiveContainer>
+  );
 }
 
 export default BarChart;
