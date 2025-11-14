@@ -22,15 +22,18 @@ function DoughnutChart({ incomeTotal, expenseTotal }) {
   };
 
   return (
-    <ResponsiveContainer width='100%' height='100%' aspect={undefined}>
-      <PieChart>
-        <Pie data={data} dataKey='value' innerRadius={60} outerRadius={90} paddingAngle={5} label={renderCustomizedLabel} labelLine={false}>
-          <Cell key='income' fill='#3ebd93' />
-          <Cell key='expense' fill='#ef4e4e' />
-        </Pie>
-        <Tooltip contentStyle={{ fontSize: '12px' }} formatter={value => numberToPersian(value)} />
-      </PieChart>
-    </ResponsiveContainer>
+    <div style={{ width: '100%', height: 260 }}>
+      <ResponsiveContainer width='100%' height='100%'>
+        <PieChart>
+          <Pie data={data} dataKey='value' innerRadius={60} outerRadius={90} paddingAngle={5} label={renderCustomizedLabel} labelLine={false}>
+            {/* Assign colors directly */}
+            <Cell key='income' fill='#3ebd93' />
+            <Cell key='expense' fill='#ef4e4e' />
+          </Pie>
+          <Tooltip contentStyle={{ fontSize: '12px' }} formatter={value => numberToPersian(value)} />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 
