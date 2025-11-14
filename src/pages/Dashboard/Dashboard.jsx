@@ -4,6 +4,7 @@ import styles from './Dashboard.module.css';
 import DoughnutChart from './components/DoughnutChart/DoughnutChart.jsx';
 import BarChart from './components/BarChart/BarChart.jsx';
 import LineChart from './components/LineChart/LineChart.jsx';
+import { numberToPersian, dateConvert } from '/src/utils/formatters';
 
 function Dashboard() {
   const { state: data } = useContext(TransactionContext);
@@ -29,31 +30,29 @@ function Dashboard() {
   // Line chart data
   const lineChartData = useMemo(() => {
     const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
-    const labels = sortedData.map(item => item.date.replace(/-/g, '/'));
+    const labels = sortedData.map(item => dateConvert(item.date));
     const incomeLine = sortedData.map(item => (item.type === 'income' ? item.amount : 0));
     const expenseLine = sortedData.map(item => (item.type === 'expense' ? item.amount : 0));
     return { labels, incomeLine, expenseLine };
   }, [data]);
 
-  // Persian number formatter
-  const formatNumber = num => num?.toString().replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]) || '';
-
   return (
     <div className={styles.container}>
       <h1>داشبورد</h1>
+
       {/* Summary Cards */}
       <div className={styles.summary__cards}>
         <div className={styles.card}>
           <span>مجموع درآمد</span>
-          <p className={styles.income}>{formatNumber(totals.incomeTotal)}</p>
+          <p className={styles.income}>{numberToPersian(totals.incomeTotal)}</p>
         </div>
         <div className={styles.card}>
           <span>مجموع هزینه</span>
-          <p className={styles.expense}>{formatNumber(totals.expenseTotal)}</p>
+          <p className={styles.expense}>{numberToPersian(totals.expenseTotal)}</p>
         </div>
         <div className={styles.card}>
           <span>تراز</span>
-          <p>{formatNumber(totals.balance)}</p>
+          <p className={styles.balance}>{numberToPersian(totals.balance)}</p>
         </div>
       </div>
 
@@ -61,17 +60,17 @@ function Dashboard() {
       {data.length > 0 ? (
         <div className={styles.charts}>
           <div className={`${styles.chart__wrapper} ${styles.bar}`}>
-            <h4>درآمد و هزینه ماه جاری</h4>
+            <span>درآمد و هزینه ماه جاری</span>
             <BarChart monthlyIncome={monthlyTotals.income} monthlyExpense={monthlyTotals.expense} />
           </div>
 
           <div className={`${styles.chart__wrapper} ${styles.line}`}>
-            <h4>روند درآمد و هزینه</h4>
+            <span>روند درآمد و هزینه</span>
             <LineChart labels={lineChartData.labels} incomeData={lineChartData.incomeLine} expenseData={lineChartData.expenseLine} />
           </div>
 
           <div className={`${styles.chart__wrapper} ${styles.doughnut}`}>
-            <h4>درآمد vs هزینه کل</h4>
+            <span>درآمد vs هزینه کل</span>
             <DoughnutChart incomeTotal={totals.incomeTotal} expenseTotal={totals.expenseTotal} />
           </div>
         </div>
